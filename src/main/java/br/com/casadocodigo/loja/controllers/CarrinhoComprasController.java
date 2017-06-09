@@ -26,9 +26,11 @@ public class CarrinhoComprasController {
     private CarrinhoCompras carrinho;
 	
 	@RequestMapping("/add")
-	public ModelAndView add(Integer produtoId, TipoPreco tipo){
+	public ModelAndView add(Integer produtoId, TipoPreco tipoPreco){
+		System.out.println("produtoId: " + produtoId);
+		System.out.println("produtoId: " + tipoPreco);
 		ModelAndView modelAndView = new ModelAndView("redirect:/carrinho");
-	    CarrinhoItem carrinhoItem = criaItem(produtoId, tipo);
+	    CarrinhoItem carrinhoItem = criaItem(produtoId, tipoPreco);
 	    carrinho.add(carrinhoItem);
 	    return modelAndView;
 	}

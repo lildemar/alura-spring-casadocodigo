@@ -11,12 +11,12 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return null;
+		return new Class[] { SecurityConfiguration.class, JPAConfiguration.class, AppWebConfiguration.class };
 	}
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] { AppWebConfiguration.class, JPAConfiguration.class };
+		return new Class[] {};
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 		encodingFilter.setEncoding("UTF-8");
 		return new Filter[] { encodingFilter };
 	}
-	
+
 	@Override
 	protected void customizeRegistration(Dynamic registration) {
 		registration.setMultipartConfig(new MultipartConfigElement(""));

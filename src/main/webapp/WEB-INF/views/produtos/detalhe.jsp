@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -99,24 +100,21 @@
 		  </header>
 	
 	  
-	  <section class="buy-options clearfix">  
-	  <form action='<c:url value="/carrinho/add" />' method="post" class="container">
-		    <ul id="variants" class="clearfix">
-		        <input type="hidden" name="produtoId" value="${produto.id}" />
-		        <c:forEach items="${produto.precos}" var="preco">
-				  <li class="buy-option">
-				    <input type="radio" name="tipo" class="variant-radio" id="tipo" value="${preco.tipo}"  checked="checked"  />
-				    <label  class="variant-label">
-				      ${preco.tipo} 
-				    </label>
-				    <small class="compare-at-price">R$ 39,90</small>
-				    <p class="variant-price">${preco.valor}</p>
-				  </li>
-				</c:forEach>        
-		    </ul>
-		    <button type="submit" class="submit-image icon-basket-alt" alt="Compre Agora" title="Compre Agora ${produto.titulo}"></button>
-	  </form>
-	  
+	<section class="buy-options clearfix">  
+		<form:form servletRelativeAction="/carrinho/add" method="post" cssClass="container">
+			<ul id="variants" class="clearfix">
+				<input type="hidden" name="produtoId" value="${produto.id}" />
+				<c:forEach items="${produto.precos}" var="preco">
+					<li class="buy-option">
+					    <input type="radio" name="tipoPreco" class="variant-radio" id="tipo" value="${preco.tipo}"  checked="checked"  />
+						<label  class="variant-label"> ${preco.tipo} </label>
+						<small class="compare-at-price">R$ 39,90</small>
+						<p class="variant-price">${preco.valor}</p>
+					</li>
+				</c:forEach>
+			</ul>
+			<button type="submit" class="submit-image icon-basket-alt" alt="Compre Agora" title="Compre Agora ${produto.titulo}"></button>
+        </form:form>
 	</section>
 	  
 	<div class="container">
