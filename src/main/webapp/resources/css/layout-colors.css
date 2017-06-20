@@ -207,6 +207,7 @@ html {
   border-bottom: #CCC 1px solid;
 }
 
+.item-col,
 .item-price-col,
 .line-price-col {
   background: rgb(245,245,245);
