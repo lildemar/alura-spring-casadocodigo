@@ -25,9 +25,8 @@ public class ProdutoDAO {
     }
     
     @SuppressWarnings("unchecked")
-	public List<Produto> listar(){
-        return manager.createQuery("select p from Produto p")
-        		.getResultList();
+    public List<Produto> listar(){
+        return manager.createQuery("select distinct(p) from Produto p").getResultList();
     }
     
     public Produto find(int id){
