@@ -22,7 +22,7 @@ public class Usuario implements UserDetails {
 	private String nome;
 	private String senha;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER, ascade=CascadeType.PERSIST)
 	private List<Role> roles = new ArrayList<Role>();
 
 	public String getEmail() {
