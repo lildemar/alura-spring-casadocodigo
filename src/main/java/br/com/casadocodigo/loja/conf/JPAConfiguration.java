@@ -18,39 +18,40 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class JPAConfiguration {
 
 	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, Properties additionalProperties) {
-	       LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
-	    factoryBean.setPackagesToScan("br.com.casadocodigo.loja.models");
-	    factoryBean.setDataSource(dataSource);
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource,
+			Properties additionalProperties) {
 
-	    JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-	    factoryBean.setJpaVendorAdapter(vendorAdapter);
+		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+		factoryBean.setPackagesToScan("br.com.casadocodigo.loja.models");
+		factoryBean.setDataSource(dataSource);
 
-	    factoryBean.setJpaProperties(additionalProperties);
+		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+		factoryBean.setJpaVendorAdapter(vendorAdapter);
 
-	    return factoryBean;
+		factoryBean.setJpaProperties(additionalProperties);
+
+		return factoryBean;
 	}
 
 	@Bean
 	@Profile("dev")
-	private DataSource dataSource() {
+	public DataSource DataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setUsername("root");
-		dataSource.setPassword("");
-		dataSource.setUrl("jdbc:mysql://localhost:3309/casadocodigo");
+		dataSource.setPassword("root");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/casadocodigo");
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-
 		return dataSource;
 	}
 
 	@Bean
 	@Profile("dev")
 	public Properties additionalProperties() {
-	    Properties props = new Properties();
-	    props.setProperty("hibernate.dialect","org.hibernate.dialect.MySQL5Dialect");
-	    props.setProperty("hibernate.show_sql", "true");
-	    props.setProperty("hibernate.hbm2ddl.auto", "update");
-	    return props;
+		Properties props = new Properties();
+		props.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+		props.setProperty("hibernate.show_sql", "true");
+		props.setProperty("hibernate.hbm2ddl.auto", "update");
+		return props;
 	}
 
 	@Bean
