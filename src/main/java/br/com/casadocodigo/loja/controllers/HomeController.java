@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.casadocodigo.loja.daos.ProdutoDAO;
+import br.com.casadocodigo.loja.daos.UsuarioDAO;
 import br.com.casadocodigo.loja.models.Produto;
 import br.com.casadocodigo.loja.models.Role;
 import br.com.casadocodigo.loja.models.Usuario;
